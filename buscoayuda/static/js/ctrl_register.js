@@ -24,11 +24,7 @@ app.controller('ctrl_register', function ($scope, $http) {
     $scope.get_service();
 
     $scope.post_register = function () {
-
-        if ($scope.fotoCompressed.compressed.dataURL === 'undefined') {
-            alert('Ingresa el campo Foto');
-        } else {
-            $scope.register.foto = $scope.fotoCompressed.compressed.dataURL;
+        $scope.register.foto = "http://es.fakenamegenerator.com/images/sil-male.png";
             $http({
                 method: 'POST',
                 url: '/api/independientes/',
@@ -36,12 +32,11 @@ app.controller('ctrl_register', function ($scope, $http) {
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
                 .success(function (data, status) {
-                    alert('Se registró satisfactoriamente la información');
-                    window.location.href = "/login/";
+                    window.location.href = "/";
                 }).error(function (data, status) {
                 alert('Se presentó un error registrando la información, intente de nuevo\n\n' + data);
             })
-        }
+
     };
 
     $scope.serialize = function (obj) {

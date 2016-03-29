@@ -1,5 +1,6 @@
 from unittest import  TestCase
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
 class FunctionalTest(TestCase):
 
@@ -24,6 +25,7 @@ class FunctionalTest(TestCase):
         apellidos = self.browser.find_element_by_id('apellidos')
         apellidos.send_keys('Saenz')
 
+        self.browser.implicitly_wait(3)
         self.browser.find_element_by_xpath("//select[@id='idServicio']/option[text()='Pintura']").click()
 
         aniosExperiencia = self.browser.find_element_by_id('aniosExperiencia')
@@ -33,18 +35,19 @@ class FunctionalTest(TestCase):
         telefono.send_keys('3111111')
 
         correoElectronico = self.browser.find_element_by_id('correoElectronico')
-        correoElectronico.send_keys('pacho@buscoayuda.com')
+        correoElectronico.send_keys('pacho4@buscoayuda.com')
 
         contrasenia = self.browser.find_element_by_id('contrasenia')
         contrasenia.send_keys('clave1234')
 
         foto = self.browser.find_element_by_id('foto')
-        foto.send_keys('C:\Desktop\cat-dog-welcome.jpg')
+        foto.send_keys('http://es.fakenamegenerator.com/images/sil-male.png')
 
         botonGuardar = self.browser.find_element_by_id('butGuardar')
         botonGuardar.click()
-        self.browser.implicitly_wait(3)
-        p = self.browser.find_element(By.XPATH, "//p[text()='Francisco Saenz']")
+
+        self.browser.implicitly_wait(30)
+        p = self.browser.find_element_by_xpath("//p[text()='Francisco Saenz']")
 
         self.assertIn('Francisco Saenz', p.text)
 

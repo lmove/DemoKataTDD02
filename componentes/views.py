@@ -11,7 +11,7 @@ from .mail import Mail
 
 
 def index(request):
-    listaidependientes = Independiente.objects.all().order_by('fechaRegistro')
+    listaidependientes = Independiente.objects.all().order_by('-fechaRegistro')
     context = {'listaidependientes': listaidependientes}
     return render(request, 'componentes/index.html', context)
 
@@ -20,10 +20,10 @@ def index_por_servicio(request, value):
     if request.method == 'GET':
         try:
             if value == -1:
-                listaidependientes = Independiente.objects.all().order_by('fechaRegistro')
+                listaidependientes = Independiente.objects.all().order_by('-fechaRegistro')
             else:
                 id_servicio = value
-                listaidependientes = Independiente.objects.filter(idServicio=id_servicio).order_by('fechaRegistro')
+                listaidependientes = Independiente.objects.filter(idServicio=id_servicio).order_by('-fechaRegistro')
                 context = {'listaidependientes': listaidependientes}
                 return render(request, 'componentes/index.html', context)
         except Exception as e:
