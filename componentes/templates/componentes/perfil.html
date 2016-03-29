@@ -1,0 +1,30 @@
+{% extends 'componentes/base.html' %}
+{% load mathfilters %}
+{# Cargar tag de librería #}
+{% load bootstrap3 %}
+{# Cargar archivos estáticos#}
+{% load staticfiles %}
+
+
+{% block content %}
+<div class="container">
+    <div class="col-md-5 buscoayuda-index-independiente-cont">
+            <h1>{{form.idServicio.nombre}}</h1>
+            <a> <img src="{{ form.foto.value }}" width="100%"></a>
+    </div>
+
+    <div class="col-md-5">
+        <form action="" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% buttons %}
+                <input type="submit" value="Actualizar" class="btn btn-primary btn-block"/>
+            {% endbuttons %}
+        </form>
+
+    </div>
+<script type="text/javascript" language="javascript" src="{% static 'js/index.js'%}"></script>
+
+</div>
+
+{% endblock %}

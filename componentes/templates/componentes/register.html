@@ -1,0 +1,84 @@
+{% extends 'componentes/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="container" ng-controller="ctrl_register">
+    [[rregister]]
+    <form ng-submit="save_register()">
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" placeholder="Nombre" ng-model="register.nombre"
+                       required maxlength="100">
+            </div>
+
+            <div class="form-group">
+                <label for="apellidos">Apellidos</label>
+                <input type="text" class="form-control" id="apellidos" placeholder="Apellidos"
+                       ng-model="register.apellidos" required maxlength="100">
+            </div>
+
+            <div class="form-group">
+                <label for="idServicio">Servicio</label>
+                <select class="form-control" id="idServicio" placeholder="Servicio" ng-model="register.idServicio"
+                        required>
+                    <option value=""></option>
+                    <option ng-repeat="option in service" value="[[option.pk]]">[[option.fields.nombre]]</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="aniosExperiencia">Años Experiencia</label>
+                <input type="number" class="form-control" id="aniosExperiencia" placeholder="Años Experiencia"
+                       ng-model="register.aniosExperiencia" required maxlength="2">
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="number" class="form-control" id="telefono" placeholder="Teléfono"
+                       ng-model="register.telefono" required maxlength="7">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="correoElectronico">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="correoElectronico"
+                           placeholder="Correo Electrónico" ng-model="register.correoElectronico" required
+                           maxlength="50">
+                </div>
+
+                <div class="form-group">
+                    <label for="contrasenia">Contraseña</label>
+                    <input type="password" class="form-control" id="contrasenia" placeholder="Contraseña"
+                           ng-model="register.contrasenia" required maxlength="15">
+                </div>
+
+                <div class="form-group">
+                    <label for="foto">Foto</label>
+                    <input id="foto" type="file" accept="image/*" image="fotoCompressed"
+                           resize-max-height="480" resize-max-width="640"
+                           resize-quality="0.3"
+                           resize-type="image/jpg" required/>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4"><img class="img-thumbnail" data-holder-rendered="true"
+                                               src="http://es.fakenamegenerator.com/images/sil-male.png"
+                                               style="width: 100%;"
+                                               ng-src="[[fotoCompressed.compressed.dataURL]]"/></div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 text-center">
+            <input type="submit" class="btn btn-default" value="Registrar">
+            <input type="reset" class="btn btn-default" value="Cancelar">
+        </div>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+dj-database-url==0.4.0
+Django==1.9.2
+django-bootstrap3==6.2.2
+django-mathfilters==0.3.0
+gunicorn==19.4.5
+psycopg2==2.6.1
+whitenoise==2.0.6
+sendgrid-django==1.4.0
+sendgrid==1.4.0

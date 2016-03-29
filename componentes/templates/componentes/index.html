@@ -1,0 +1,70 @@
+{% extends 'componentes/base.html' %}
+{% load mathfilters %}
+{# Cargar archivos estáticos#}
+{% load staticfiles %}
+{% block content %}
+
+<div class="container" ng-controller="ctrl_index">
+    <div id="buscoayuda-index-filter">
+        <h2 class="buscoayuda-inline-block">Filtro:</h2>
+        <select ng-change="ver_independientes_por_filtro()" ng-model="servicio_seleccionado" class="buscoayuda-inline-block">
+            <option value="-1" selected="selected">Todos</option>
+            <option ng-repeat="s in servicios" value="[[s.pk]]">[[s.fields.nombre]]</option>
+        </select>
+    </div>
+
+    <table id="example" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% for independiente in listaidependientes %}
+            <td width="30%">
+                <div class="buscoayuda-index-independiente-cont">
+                    <h1>{{independiente.idServicio.nombre}}</h1>
+                    <a href="{% url 'independiente:detalleIndependiente' value=independiente.id %}">
+                        <img src="{{independiente.foto}}">
+                        <p>{{independiente.nombre}} {{independiente.apellidos}}</p>
+                    </a>
+                </div>
+            </td>
+            {% if forloop.counter|divisibleby:"3" %}
+        </tr>
+        <tr>
+            {% endif %}
+            {% endfor %}
+
+            {% with total=listaidependientes|length %}
+            {% with totalcols=total|div:3 %}
+            {% with floortotalcols=totalcols|intdiv:1 %}
+            {% with resulttotal=totalcols|sub:floortotalcols %}
+
+            {% if resulttotal > 0.5 %}
+            <td></td>
+            {% endif %}
+            {% if resulttotal < 0.5 %}
+            <td></td>
+            <td></td>
+            {% endif %}
+            {% if resulttotal == 0 %}
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            {% endif %}
+            {% endwith %}
+            {% endwith %}
+            {% endwith %}
+            {% endwith %}
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript" language="javascript" src="{% static 'js/index.js'%}"></script>
+
+{% endblock %}

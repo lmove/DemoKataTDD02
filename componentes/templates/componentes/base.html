@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app_buscoayuda">
+<head>
+    <meta charset="UTF-8">
+    {# Cargar tag de librería #}
+    {% load bootstrap3 %}
+    {# Cargar CSS y JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {# Cargar archivos estáticos#}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <title>Busco Ayuda</title>
+    <script type="text/javascript" language="javascript" src="{% static 'js/jquery-1.12.0.min.js'%}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'js/jquery.dataTables.min.js'%}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'js/bootstrap.min.js'%}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'js/dataTables.bootstrap.min.js'%}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'js/angular.min.js'%}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'js/modules_angular.js'%}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'js/ng-image-compress.js'%}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'js/ctrl_base.js'%}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'js/ctrl_index.js'%}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'js/ctrl_register.js'%}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'js/ctrl_login.js'%}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'js/ctrl_comentario.js'%}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'js/ctrl_independiente.js'%}"></script>
+</head>
+<body>
+<header ng-controller="ctrl_base" id="buscoayuda-header" class="container">
+    <a href="/"><h1 class="buscoayuda-inline-block">BuscoAyuda <i class="fa fa-bullhorn"></i></h1></a>
+    <nav class="right buscoayuda-inline-block">
+        <span ng-hide="logged">
+            <a href="/">Inicio</a> |
+            <a href="/register/">Registrarse</a> |
+            <a href="/login/"><i class="fa fa-sign-in"></i> Iniciar sesión</a>
+        </span>
+        <span ng-show="logged">
+            <a href="/">Inicio</a> |
+            <a ng-click="makeURL()" >Perfil</a> |
+            <a href ng-click="log_out()"><i class="fa fa-sign-out"></i> Cerrar sesión</a>
+        </span>
+    </nav>
+</header>
+
+{% block content %}
+{% endblock %}
+
+<footer id="buscoayuda-footer">
+    <p>Desarrollado por Grupo 1 Procesos Ágiles Uniandes 2016-10</p>
+</footer>
+</body>
+</html>

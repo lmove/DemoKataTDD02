@@ -1,0 +1,1 @@
+web: gunicorn buscoayuda.wsgi --log-file -
