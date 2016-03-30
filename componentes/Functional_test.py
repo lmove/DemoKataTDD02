@@ -57,8 +57,6 @@ class FunctionalTest(TestCase):
         p = self.browser.find_element_by_xpath("//p[text()='Francisco Saenz']")
         p.click()
 
-        nombre = self.browser.find_element_by_id('nombre')
-        apellidos = self.browser.find_element_by_id('apellidos')
+        nombre = self.browser.find_element_by_id('nombreCompleto')
 
-        self.assertIn('Francisco', nombre.text)
-        self.assertIn('Saenz', apellidos.text)
+        self.assertIn('Francisco Saenz', nombre.text)

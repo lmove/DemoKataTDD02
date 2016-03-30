@@ -12,7 +12,7 @@
             <a> <img src="{{ form.foto.value }}" width="100%"></a>
     </div>
     <div class="col-md-5">
-
+    <h2 id="nombreCompleto">{{independiente.nombre}} {{independiente.apellidos}}</h2>
     <table class="buscoayuda-bottom-hr" id="example" cellspacing="0" width="100%">
         <form action="{% url 'independiente:detalleIndependiente' value=0 %}" enctype="multipart/form-data" method="post">
             {% csrf_token %}

@@ -96,7 +96,7 @@ def detalle_independiente(request, value):
     else:
         independiente = Independiente.objects.get(id=value)
         form = DetalleIndependienteForm(instance=independiente)
-    return render(request, 'componentes/independiente_form.html', {'form': form})
+    return render(request, 'componentes/independiente_form.html', {'form': form, 'independiente': independiente})
 
 
 @csrf_exempt
