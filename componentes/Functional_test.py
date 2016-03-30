@@ -51,4 +51,14 @@ class FunctionalTest(TestCase):
 
         self.assertIn('Francisco Saenz', p.text)
 
+    def test_view_detail(self):
+        self.browser.get('http://localhost:8000')
+        self.browser.implicitly_wait(30)
+        p = self.browser.find_element_by_xpath("//p[text()='Francisco Saenz']")
+        p.click()
 
+        nombre = self.browser.find_element_by_id('nombre')
+        apellidos = self.browser.find_element_by_id('apellidos')
+
+        self.assertIn('Francisco', nombre.text)
+        self.assertIn('Saenz', apellidos.text)
